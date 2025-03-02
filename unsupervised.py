@@ -116,6 +116,9 @@ print("Top three eigenvalues:", top_three_eigenvalues)
 
 """### Clustering"""
 
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score # Import silhouette_score
+
 #Reduced 3D pca data
 df_cluster = data_pca_3d
 
@@ -158,7 +161,6 @@ print(centroids_pca_space)
 print("\nCentroids in original feature space:")
 print(centroids_original_space)
 
-from sklearn.cluster import KMeans
 # Applying KMeans with optimal K
 kmeans_final = KMeans(n_clusters=optimal_k, random_state=42, n_init=10)
 df_kmeans_labels = kmeans_final.fit_predict(df_cluster)
@@ -249,6 +251,6 @@ df_final
 
 df_final.columns = [''] * len(df_final.columns)
 
-df_final
+df_final.head()
 
 df_final.to_csv('ARM_data.csv', index=False)
